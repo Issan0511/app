@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Login.css';
+import '../styles/Login.css';
 
 function Login({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +22,7 @@ function Login({ onLogin }) {
     // ここでは例示のため簡略化しています
     if (username === 'demo' && password === 'password') {
       onLogin({ username });
+      navigate('/home'); // SPAとしての遷移
     } else {
       setError('ユーザー名またはパスワードが正しくありません。');
     }
@@ -52,5 +54,7 @@ function Login({ onLogin }) {
     </div>
   );
 }
+
+
 
 export default Login;
